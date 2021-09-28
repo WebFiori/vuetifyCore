@@ -5,7 +5,7 @@ This repo holds a base theme which holds basic structure for building Vuetify ba
 ## Classes 
 
 ### [`VuetifyThemeCore`](https://github.com/WebFiori/vuetifyCore/blob/main/themes/vuetifyCore/VuetifyThemeCore.php)
-This is the theme class. The developer must extend this class in order to create his own Vuetify based theme.
+This is the theme class. It acts as the core of any Vuetify based theme. The developer must extend this class in order to create his own Vuetify based themes.
 
 ### [`VuetifyWebPage`](https://github.com/WebFiori/vuetifyCore/blob/main/themes/vuetifyCore/VuetifyWebPage.php)
 This class extends the class `WebPage`. It has utility methods which helps in creating pages which is based on Vuetify much easier task.
