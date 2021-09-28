@@ -2,6 +2,9 @@
 
 This repo holds a base theme which holds basic structure for building Vuetify based theme. 
 
+## Installation
+First of all, you need to have WebFiori framework installed. After that, include the following in your `require` section of your `composer.json` file: `webfiori/vuetifyCore`. Then run the command `php composer "install" "--no-dev"` to install your dependencies. 
+
 ## Classes 
 
 ### [`VuetifyThemeCore`](https://github.com/WebFiori/vuetifyCore/blob/main/themes/vuetifyCore/VuetifyThemeCore.php)
