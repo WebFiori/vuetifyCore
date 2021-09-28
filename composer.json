@@ -1,0 +1,24 @@
+{
+    "name": "webfiori/vuetifyCore",
+    "description": "A base theme which holds basic structure for building Vuetify based themes.",
+    "authors": [
+        {
+            "name": "Ibrahim BinAlshikh",
+            "email": "ibrahim@webfiori.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6"
+    },
+    "keywords": [
+        "framework",
+        "webfiori",
+        "php",
+        "API",
+        "Web APIs",
+        "Themes",
+        "Vuetify",
+        "Vue"
+    ],
+    "license": "MIT"
+}
