@@ -12,29 +12,8 @@ class CreateVuetifyThemeCommand extends CLICommand {
     public function __construct() {
         parent::__construct('create-vuetify-theme', [
         ], 'Creates a theme which will be based on Vuetify UI framework. The created '
-                . 'theme will be based on one of the wireframes which exist at '
-                . 'https://vuetifyjs.com/en/getting-started/wireframes .');
-    }
-    private function _validateClassName($name) {
-        $len = strlen($name);
-
-        if ($len > 0) {
-            for ($x = 0 ; $x < $len ; $x++) {
-                $char = $name[$x];
-
-                if ($x == 0 && $char >= '0' && $char <= '9') {
-                    return false;
-                }
-
-                if (!(($char <= 'Z' && $char >= 'A') || ($char <= 'z' && $char >= 'a') || ($char >= '0' && $char <= '9') || $char == '_')) {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        return false;
+                .'theme will be based on one of the wireframes which exist at '
+                .'https://vuetifyjs.com/en/getting-started/wireframes .');
     }
     public function exec() {
         $wireframes = [
@@ -48,9 +27,10 @@ class CreateVuetifyThemeCommand extends CLICommand {
         $this->println("Creating new vuetify theme based on '$wireframe' wireframe...");
         $creator->writeClass();
         $this->println('Your theme was successfully created.');
+
         return 0;
     }
-    
+
     /**
      * Prompts the user to enter class information such as it is name.
      * 
@@ -149,6 +129,27 @@ class CreateVuetifyThemeCommand extends CLICommand {
         } while (!$isNameValid);
 
         return trim($ns,'\\');
+    }
+    private function _validateClassName($name) {
+        $len = strlen($name);
+
+        if ($len > 0) {
+            for ($x = 0 ; $x < $len ; $x++) {
+                $char = $name[$x];
+
+                if ($x == 0 && $char >= '0' && $char <= '9') {
+                    return false;
+                }
+
+                if (!(($char <= 'Z' && $char >= 'A') || ($char <= 'z' && $char >= 'a') || ($char >= '0' && $char <= '9') || $char == '_')) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        return false;
     }
     private function _validateNamespace($ns) {
         if ($ns == '\\') {

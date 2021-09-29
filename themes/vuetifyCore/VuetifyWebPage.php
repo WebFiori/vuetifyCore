@@ -2,9 +2,9 @@
 namespace themes\vuetifyCore;
 
 use webfiori\framework\ui\WebPage;
+use webfiori\framework\WebFioriApp;
 use webfiori\json\Json;
 use webfiori\ui\HTMLNode;
-use webfiori\framework\WebFioriApp;
 
 /**
  * The base page which is used to created pages which is based on Vuetify.
@@ -22,38 +22,14 @@ class VuetifyWebPage extends WebPage {
      */
     public function __construct() {
         parent::__construct();
-        
-        $this->addBeforeRender(function (VuetifyWebPage $p) {
+
+        $this->addBeforeRender(function (VuetifyWebPage $p)
+        {
             $jsCode = new HTMLNode('script');
             $jsCode->text('data = '.$p->getJson());
             $p->getDocument()->getHeadNode()->addChild($jsCode);
         });
         $this->jsonData = new Json();
-    }
-    /**
-     * Converts an array of labels to JSON objects which could be used as items 
-     * for selects or auto-complete components of Vuetify.
-     * 
-     * @param string $label A label location which exist in the language class.
-     * 
-     * @return array The method will return an array that holds objects of type 
-     * Json. Each object will have at least two attributes, 'value' 
-     * and 'text'.
-     */
-    public function toVItems($label) {
-        $data = $this->get($label);
-        $retVal = [];
-        
-        if (gettype($data) == 'array') {
-            foreach ($data as $key => $lbl) {
-                $retVal[] = new Json([
-                    'text' => $lbl,
-                    'value' => $key
-                ]);
-            }
-        }
-        
-        return $retVal;
     }
     /**
      * Adds a set of attributes to the json data.
@@ -88,7 +64,8 @@ class VuetifyWebPage extends WebPage {
      * 
      */
     public function setVueScript($jsFilePath) {
-        $this->addBeforeRender(function (WebPage $page, $jsPath) {
+        $this->addBeforeRender(function (WebPage $page, $jsPath)
+        {
             $page->removeChild('vue-script');
             $page->getDocument()->addChild('script', [
                 'type' => 'text/javascript',
@@ -96,5 +73,30 @@ class VuetifyWebPage extends WebPage {
                 'id' => 'vue-script'
             ]);
         }, [$jsFilePath]);
+    }
+    /**
+     * Converts an array of labels to JSON objects which could be used as items 
+     * for selects or auto-complete components of Vuetify.
+     * 
+     * @param string $label A label location which exist in the language class.
+     * 
+     * @return array The method will return an array that holds objects of type 
+     * Json. Each object will have at least two attributes, 'value' 
+     * and 'text'.
+     */
+    public function toVItems($label) {
+        $data = $this->get($label);
+        $retVal = [];
+
+        if (gettype($data) == 'array') {
+            foreach ($data as $key => $lbl) {
+                $retVal[] = new Json([
+                    'text' => $lbl,
+                    'value' => $key
+                ]);
+            }
+        }
+
+        return $retVal;
     }
 }

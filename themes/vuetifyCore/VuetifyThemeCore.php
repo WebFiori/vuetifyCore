@@ -10,19 +10,20 @@ abstract class VuetifyThemeCore extends Theme {
      * 
      * @param string $themeName An optional theme name.
      */
-    public function __construct($themeName = ''){
+    public function __construct($themeName = '') {
         parent::__construct($themeName);
         $this->setVersion('1.0');
         $this->setAuthor('Ibrahim BinAlshikh');
         $this->setDescription('This theme creates basic page structure for '
-                . 'building themes which can be based on Vuetify. Vuetify is a '
-                . 'powerfull material design UI kit which can help in building '
-                . 'amazing user interface.');
+                .'building themes which can be based on Vuetify. Vuetify is a '
+                .'powerfull material design UI kit which can help in building '
+                .'amazing user interface.');
         $this->setAuthorUrl('https://ibrahim-binalshikh.me');
         $this->setLicenseName('MIT');
         $this->setLicenseUrl('https://opensource.org/licenses/MIT');
-        
-        $this->setAfterLoaded(function (Theme $theme) {
+
+        $this->setAfterLoaded(function (Theme $theme)
+        {
             $page = $theme->getPage();
             $vueEl = new HTMLNode('div', [
                 'id' => 'app'
