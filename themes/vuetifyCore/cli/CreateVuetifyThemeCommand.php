@@ -2,6 +2,7 @@
 namespace themes\vuetifyCore\cli;
 
 use webfiori\framework\cli\CLICommand;
+use webfiori\framework\Util;
 /**
  * Description of CreateVuetifyThemeCommand
  *
@@ -10,26 +11,41 @@ use webfiori\framework\cli\CLICommand;
 class CreateVuetifyThemeCommand extends CLICommand {
     public function __construct() {
         parent::__construct('create-vuetify-theme', [
-            '--whireframe' => [
-                'optional' => 'true',
-                'default' => 'Base',
-                'description' => 'An optional wireframe to use in bulding your '
-                . 'theme. Defalt is the "Base" wireframe.',
-                'values' => [
-                    "Base","Extended Toolbar", "System Bar",
-                    "Inbox", "Constrained", "Side Navigation",
-                    "Three Column", "Discord"
-                ]
-            ]
         ], 'Creates a theme which will be based on Vuetify UI framework. The created '
                 . 'theme will be based on one of the wireframes which exist at '
                 . 'https://vuetifyjs.com/en/getting-started/wireframes .');
     }
+    private function _validateClassName($name) {
+        $len = strlen($name);
+
+        if ($len > 0) {
+            for ($x = 0 ; $x < $len ; $x++) {
+                $char = $name[$x];
+
+                if ($x == 0 && $char >= '0' && $char <= '9') {
+                    return false;
+                }
+
+                if (!(($char <= 'Z' && $char >= 'A') || ($char <= 'z' && $char >= 'a') || ($char >= '0' && $char <= '9') || $char == '_')) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        return false;
+    }
     public function exec() {
-        $wireframe = $this->getArgValue('----whireframe');
-        $classInfo = $this->getClassInfo();
+        $wireframes = [
+            "Base","Extended Toolbar", "System Bar",
+            "Inbox", "Side Navigation",
+        ];
+        $wireframe = $this->select('Select theme wireframe:', $wireframes, 0);
+        $classInfo = $this->getClassInfo('themes\\vuetify');
         $classInfo['wireframe'] = $wireframe;
         $creator = new VuetifyThemeClassWriter($classInfo);
+        $this->println("Creating new vuetify theme based on '$wireframe' wireframe...");
         $creator->writeClass();
         $this->println('Your theme was successfully created.');
         return 0;
@@ -133,5 +149,29 @@ class CreateVuetifyThemeCommand extends CLICommand {
         } while (!$isNameValid);
 
         return trim($ns,'\\');
+    }
+    private function _validateNamespace($ns) {
+        if ($ns == '\\') {
+            return true;
+        }
+        $split = explode('\\', $ns);
+
+        foreach ($split as $subNs) {
+            $len = strlen($subNs);
+
+            for ($x = 0 ; $x < $len ; $x++) {
+                $char = $subNs[$x];
+
+                if ($x == 0 && $char >= '0' && $char <= '9') {
+                    return false;
+                }
+
+                if (!(($char <= 'Z' && $char >= 'A') || ($char <= 'z' && $char >= 'a') || ($char >= '0' && $char <= '9') || $char == '_')) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }
