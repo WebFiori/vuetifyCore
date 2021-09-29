@@ -7,8 +7,10 @@ use webfiori\ui\HTMLNode;
 abstract class VuetifyThemeCore extends Theme {
     /**
      * Creates new instance of the class.
+     * 
+     * @param string $themeName An optional theme name.
      */
-    public function __construct($themeName){
+    public function __construct($themeName = ''){
         parent::__construct($themeName);
         $this->setVersion('1.0');
         $this->setAuthor('Ibrahim BinAlshikh');
