@@ -4,6 +4,7 @@ namespace themes\vuetifyCore;
 use webfiori\framework\ui\WebPage;
 use webfiori\json\Json;
 use webfiori\ui\HTMLNode;
+use webfiori\framework\WebFioriApp;
 
 /**
  * The base page which is used to created pages which is based on Vuetify.
