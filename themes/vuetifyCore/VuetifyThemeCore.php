@@ -8,10 +8,8 @@ abstract class VuetifyThemeCore extends Theme {
     /**
      * Creates new instance of the class.
      */
-    public function __construct(){
-        parent::__construct();
-        //TODO: Set the properties of your theme.
-        $this->setName('Vuetify Base Theme');
+    public function __construct($themeName){
+        parent::__construct($themeName);
         $this->setVersion('1.0');
         $this->setAuthor('Ibrahim BinAlshikh');
         $this->setDescription('This theme creates basic page structure for '
@@ -21,22 +19,23 @@ abstract class VuetifyThemeCore extends Theme {
         $this->setAuthorUrl('https://ibrahim-binalshikh.me');
         $this->setLicenseName('MIT');
         $this->setLicenseUrl('https://opensource.org/licenses/MIT');
-        //$this->setCssDirName('css');
-        //$this->setJsDirName('js');
-        //$this->setImagesDirName('images');
+        
         $this->setAfterLoaded(function (Theme $theme) {
             $page = $theme->getPage();
-            $appEl = new HTMLNode('div', [
+            $vueEl = new HTMLNode('div', [
+                'id' => 'app'
+            ]);
+            $appEl = $vueEl->addChild('v-app', [
                 'id' => 'app'
             ]);
             $appEl->addChild($page->removeChild('page-header'));
             $appEl->addChild($page->removeChild('page-body'));
             $appEl->addChild($page->removeChild('page-footer'));
-            $page->getDocument()->getBody()->addChild($appEl);
+            $page->getDocument()->getBody()->addChild($vueEl);
             $page->getChildByID('main-content-area')->setNodeName('v-main');
             $page->getDocument()->addChild('script', [
                 'id' => 'vue-script',
-                'src' => ''
+                'src' => 'https://cdn.jsdelivr.net/gh/webfiori/vuetifyCore@'.$theme->getVersion().'/themes/vuetifyCore/default.js'
             ]);
         });
     }
