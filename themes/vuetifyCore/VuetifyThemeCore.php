@@ -12,7 +12,7 @@ abstract class VuetifyThemeCore extends Theme {
      */
     public function __construct($themeName = '') {
         parent::__construct($themeName);
-        $this->setVersion('1.0');
+        $this->setVersion('1.1');
         $this->setAuthor('Ibrahim BinAlshikh');
         $this->setDescription('This theme creates basic page structure for '
                 .'building themes which can be based on Vuetify. Vuetify is a '
