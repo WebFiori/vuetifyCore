@@ -12,7 +12,7 @@ abstract class VuetifyThemeCore extends Theme {
      */
     public function __construct($themeName = '') {
         parent::__construct($themeName);
-        $this->setVersion('1.1');
+        $this->setVersion('1.2');
         $this->setAuthor('Ibrahim BinAlshikh');
         $this->setDescription('This theme creates basic page structure for '
                 .'building themes which can be based on Vuetify. Vuetify is a '
@@ -28,9 +28,7 @@ abstract class VuetifyThemeCore extends Theme {
             $vueEl = new HTMLNode('div', [
                 'id' => 'app'
             ]);
-            $appEl = $vueEl->addChild('v-app', [
-                'id' => 'app'
-            ]);
+            $appEl = $vueEl->addChild('v-app');
             $appEl->addChild($page->removeChild('page-header'));
             $appEl->addChild($page->removeChild('page-body'));
             $appEl->addChild($page->removeChild('page-footer'));
@@ -38,7 +36,7 @@ abstract class VuetifyThemeCore extends Theme {
             $page->getChildByID('main-content-area')->setNodeName('v-main');
             $page->getDocument()->addChild('script', [
                 'id' => 'vue-script',
-                'src' => 'https://cdn.jsdelivr.net/gh/webfiori/vuetifyCore@'.$theme->getVersion().'/themes/vuetifyCore/default.js'
+                'src' => 'https://cdn.jsdelivr.net/gh/webfiori/vuetifyCore@1.2/themes/vuetifyCore/default.js'
             ]);
         });
     }
