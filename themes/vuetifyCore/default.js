@@ -3,7 +3,6 @@
 app = new Vue({
     el:"#app",
     data: {
-        rtl:data.dir === 'rtl',
         drawer:null,
         cards: ['Today', 'Yesterday'],
         inbox_links: [
@@ -25,5 +24,7 @@ app = new Vue({
             'Updates',
         ],
     },
-    vuetify: new Vuetify()
+    vuetify: new Vuetify({
+        rtl:data.dir === 'rtl',
+    })
 });
