@@ -25,6 +25,9 @@ class VuetifyWebPage extends WebPage {
 
         $this->addBeforeRender(function (VuetifyWebPage $p)
         {
+            $p->addToJson([
+                'dir' => $this->getWritingDir()
+            ]);
             $p->addBeforeRender(function (VuetifyWebPage $p2) {
                 $jsCode = new HTMLNode('script');
                 $jsCode->text('data = '.$p2->getJson(), false);
