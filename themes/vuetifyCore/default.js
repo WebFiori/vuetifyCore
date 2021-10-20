@@ -1,6 +1,9 @@
+/* global data */
+
 app = new Vue({
     el:"#app",
     data: {
+        rtl:data.dir === 'rtl',
         drawer:null,
         cards: ['Today', 'Yesterday'],
         inbox_links: [
