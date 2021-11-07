@@ -90,7 +90,7 @@ class VuetifyThemeClassWriter extends ClassWriter {
         $this->append(" * @return HTMLNode|null @return HTMLNode|null An object of type 'HTMLNode'. If the theme has no header", 1);
         $this->append(' * section, the method might return null.', 1);
         $this->append(' */', 1);
-        $this->append('public function getHeadrNode() {', 1);
+        $this->append('public function getHeaderNode() {', 1);
         $this->append('return new HeaderSection($this->getPage());', 2);
         $this->append('}', 1);
         $this->writeHeader();
