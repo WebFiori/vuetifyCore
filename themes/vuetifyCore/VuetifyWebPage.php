@@ -71,6 +71,11 @@ class VuetifyWebPage extends WebPage {
     public function setVueScript($jsFilePath) {
         $this->addBeforeRender(function (WebPage $page, $jsPath)
         {
+            $base = $page->getBase();
+            
+            if (!strpos($jsPath, $base) === false) {
+                $jsPath = trim($base,"/").'/'.trim($jsPath, "/");
+            }
             $page->removeChild('vue-script');
             $page->getDocument()->addChild('script', [
                 'type' => 'text/javascript',
@@ -85,20 +90,32 @@ class VuetifyWebPage extends WebPage {
      * 
      * @param string $label A label location which exist in the language class.
      * 
+     * @param array $extraAttrs An associative array that holds extra 
+     * attributes to set for an item. The indices of the array should
+     * represent the key and the value is a sub-associative array of 
+     * values.
+     * 
      * @return array The method will return an array that holds objects of type 
      * Json. Each object will have at least two attributes, 'value' 
      * and 'text'.
      */
-    public function toVItems($label) {
+    public function toVItems($label, array $extraAttrs = []) {
         $data = $this->get($label);
         $retVal = [];
 
         if (gettype($data) == 'array') {
             foreach ($data as $key => $lbl) {
-                $retVal[] = new Json([
+                $jsonItem = new Json([
                     'text' => $lbl,
                     'value' => $key
                 ]);
+                
+                if (isset($extraAttrs[$key]) && gettype() == 'array') {
+                    foreach ($extraAttrs[$key] as $itemKey => $val) {
+                        $jsonItem->add($itemKey, $val);
+                    }
+                }
+                $retVal[] = $jsonItem;
             }
         }
 
