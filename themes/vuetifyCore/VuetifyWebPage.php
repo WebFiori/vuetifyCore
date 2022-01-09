@@ -8,6 +8,15 @@ use webfiori\ui\HTMLNode;
 
 /**
  * The base page which is used to created pages which is based on Vuetify.
+ * 
+ * This class serves two objectives. First is to help in setting the script
+ * which is used to initialize Vue and Vuetify. The script is appended to the
+ * body of the page with &lt;script&gt; element with 'id='vue-script'.
+ * 
+ * Secondly, it provides developer with the global 'data' JavaScript object at
+ * which the developer can use to pass values from backend to the rendered
+ * frontend web page. The object is created at the end of the &lt;head&gt;
+ * tag inside a &lt;script&gt; element before the page is rendered.
  *
  * @author Ibrahim
  */
@@ -37,7 +46,7 @@ class VuetifyWebPage extends WebPage {
         $this->jsonData = new Json();
     }
     /**
-     * Adds a set of attributes to the json data.
+     * Adds a set of attributes to the global 'data' JavaScript object.
      * 
      * This method will add attributes to the global 'data' JsvaScript object.
      * 
@@ -45,18 +54,18 @@ class VuetifyWebPage extends WebPage {
      * are attributes names and the value of each index is the value that will 
      * be passed.
      */
-    public function addToJson($arrOfAttrs) {
+    public function addToJson(array $arrOfAttrs) {
         foreach ($arrOfAttrs as $attrKey => $attrVal) {
             $this->getJson()->add($attrKey, $attrVal);
         }
     }
     /**
-     * Returns an object of type Json that contains all JSON attributes.
+     * Returns an object of type Json that contains all JSON attributes which 
+     * will be added to the global 'data' JavaScript object.
      * 
      * Initially, the object will contain all common attributes for all pages.
      * 
      * @return Json
-     * 
      */
     public function getJson() {
         return $this->jsonData;
@@ -66,7 +75,6 @@ class VuetifyWebPage extends WebPage {
      * 
      * @param string $jsFilePath A string that represents the path of the 
      * file such as 'assets/js/init-vue.js'.
-     * 
      */
     public function setVueScript($jsFilePath) {
         $this->addBeforeRender(function (WebPage $page, $jsPath)
@@ -97,7 +105,8 @@ class VuetifyWebPage extends WebPage {
      * 
      * @return array The method will return an array that holds objects of type 
      * Json. Each object will have at least two attributes, 'value' 
-     * and 'text'.
+     * and 'text'. The object may have extra attributes based on what values
+     * passed in the array <b>$extraAttrs</b>.
      */
     public function toVItems($label, array $extraAttrs = []) {
         $data = $this->get($label);
@@ -110,7 +119,7 @@ class VuetifyWebPage extends WebPage {
                     'value' => $key
                 ]);
                 
-                if (isset($extraAttrs[$key]) && gettype() == 'array') {
+                if (isset($extraAttrs[$key]) && gettype($extraAttrs[$key]) == 'array') {
                     foreach ($extraAttrs[$key] as $itemKey => $val) {
                         $jsonItem->add($itemKey, $val);
                     }
