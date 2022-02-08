@@ -14,16 +14,18 @@ class VuetifyThemeClassWriter extends ClassWriter {
         parent::__construct($classInfoArr);
 
         $this->wireframe = $classInfoArr['wireframe'];
-
+        $ns = $this->getNamespace();
+        
         $this->append('<?php');
-        $this->append('namespace '.$this->getNamespace().';');
+        $this->append('namespace '.$ns.';');
         $this->append('');
         $this->append('use themes\\vuetifyCore\\VuetifyThemeCore;');
         $this->append('use webfiori\\ui\\HTMLNode;');
-        $this->append('use '.$this->getNamespace().'\\AsideSection;');
-        $this->append('use '.$this->getNamespace().'\\FooterSection;');
-        $this->append('use '.$this->getNamespace().'\\HeadSection;');
-        $this->append('use '.$this->getNamespace().'\\HeaderSection;');
+        
+        $this->append('use '.$ns.'\\AsideSection;');
+        $this->append('use '.$ns.'\\FooterSection;');
+        $this->append('use '.$ns.'\\HeadSection;');
+        $this->append('use '.$ns.'\\HeaderSection;');
         $this->append('');
         $this->append("class ".$this->getName().' extends VuetifyThemeCore {');
         $this->append("/**", 1);
@@ -226,6 +228,7 @@ class VuetifyThemeClassWriter extends ClassWriter {
         $writer->append("\$this->addCSS('https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css');", 2);
         $writer->append("\$this->addCSS('https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css');", 2);
         $writer->append("\$this->addJs('https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js');", 2);
+        $writer->append("\$this->addJs('https://cdn.jsdelivr.net/gh/usernane/AJAXRequestJs@2.0.3/AJAXRequest.js');", 2);
         $writer->append('//TODO: Add any extra JS or Css files here in addition to meta tags.', 2);
         $writer->append('}', 1);
         $writer->append('}');
@@ -258,7 +261,9 @@ class VuetifyThemeClassWriter extends ClassWriter {
             $writer->append("'app'", 3);
             $writer->append(']);', 2);
             $writer->append("\$this->addChild('v-app-bar-nav-icon', [", 2);
-            $writer->append("'@click' => \"drawer = !drawer\"", 3);
+            $writer->append("'@click' => \"drawer = !drawer\",", 3);
+            $writer->append("'class' => \"d-sm-flex d-md-none\",", 3);
+            $writer->append("'id' => \"nav-menu-icon\",", 3);
             $writer->append("]);", 2);
             $writer->append("\$this->addChild('v-toolbar-title')->text(\$page->getWebsiteName());", 2);
         } else {
@@ -267,7 +272,9 @@ class VuetifyThemeClassWriter extends ClassWriter {
                 $writer->append("'app', 'shrink-on-scroll'", 3);
                 $writer->append(']);', 2);
                 $writer->append("\$this->addChild('v-app-bar-nav-icon', [", 2);
-                $writer->append("'@click' => \"drawer = !drawer\"", 3);
+                $writer->append("'@click' => \"drawer = !drawer\",", 3);
+                $writer->append("'class' => \"d-sm-flex d-md-none\",", 3);
+                $writer->append("'id' => \"nav-menu-icon\",", 3);
                 $writer->append("]);", 2);
                 $writer->append("\$this->addChild('v-toolbar-title')->text(\$page->getWebsiteName());", 2);
                 $writer->append("\$this->addChild('v-spacer');", 2);
