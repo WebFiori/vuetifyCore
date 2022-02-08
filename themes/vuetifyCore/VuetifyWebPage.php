@@ -96,7 +96,8 @@ class VuetifyWebPage extends WebPage {
      * Converts an array of labels to JSON objects which could be used as items 
      * for selects or auto-complete components of Vuetify.
      * 
-     * @param string $label A label location which exist in the language class.
+     * @param string|array $label A label location which exist in the language class.
+     * Also, this can be an array that holds the labels.
      * 
      * @param array $extraAttrs An associative array that holds extra 
      * attributes to set for an item. The indices of the array should
@@ -109,7 +110,11 @@ class VuetifyWebPage extends WebPage {
      * passed in the array <b>$extraAttrs</b>.
      */
     public function toVItems($label, array $extraAttrs = []) {
-        $data = $this->get($label);
+        if (gettype($label) == 'array') {
+            $data = $label;
+        } else {
+            $data = $this->get($label);
+        }
         $retVal = [];
 
         if (gettype($data) == 'array') {
