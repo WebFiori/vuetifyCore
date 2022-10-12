@@ -42,7 +42,7 @@ class VuetifyWebPage extends WebPage {
                 $jsCode->text('data = '.$p2->getJson(), false);
                 $p2->getDocument()->getHeadNode()->addChild($jsCode);
             });
-        });
+        }, [], 100);
         $this->jsonData = new Json();
     }
     /**
@@ -77,7 +77,7 @@ class VuetifyWebPage extends WebPage {
      * file such as 'assets/js/init-vue.js'.
      */
     public function setVueScript($jsFilePath) {
-        $this->addBeforeRender(function (WebPage $page, $jsPath)
+        $this->addBeforeRender(function (WebPage $page, string $jsPath)
         {
             $base = $page->getBase();
             
@@ -90,7 +90,7 @@ class VuetifyWebPage extends WebPage {
                 'src' => $jsPath.'?jv='.WebFioriApp::getAppConfig()->getVersion(),
                 'id' => 'vue-script'
             ]);
-        }, [$jsFilePath]);
+        }, [$jsFilePath], 0);
     }
     /**
      * Converts an array of labels to JSON objects which could be used as items 
@@ -109,7 +109,7 @@ class VuetifyWebPage extends WebPage {
      * and 'text'. The object may have extra attributes based on what values
      * passed in the array <b>$extraAttrs</b>.
      */
-    public function toVItems($label, array $extraAttrs = []) {
+    public function toVItems(string $label, array $extraAttrs = []) {
         if (gettype($label) == 'array') {
             $data = $label;
         } else {
