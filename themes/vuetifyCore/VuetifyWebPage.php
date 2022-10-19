@@ -42,7 +42,7 @@ class VuetifyWebPage extends WebPage {
                 $jsCode->text('data = '.$p2->getJson(), false);
                 $p2->getDocument()->getHeadNode()->addChild($jsCode);
             });
-        }, [], 100);
+        }, 100);
         $this->jsonData = new Json();
     }
     /**
@@ -90,7 +90,7 @@ class VuetifyWebPage extends WebPage {
                 'src' => $jsPath.'?jv='.WebFioriApp::getAppConfig()->getVersion(),
                 'id' => 'vue-script'
             ]);
-        }, [$jsFilePath], 0);
+        }, 0, [$jsFilePath]);
     }
     /**
      * Converts an array of labels to JSON objects which could be used as items 
