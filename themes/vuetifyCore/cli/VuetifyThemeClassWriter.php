@@ -1,7 +1,7 @@
 <?php
 namespace themes\vuetifyCore\cli;
 
-use webfiori\framework\cli\writers\ClassWriter;
+use webfiori\framework\writers\ClassWriter;
 /**
  * Description of VuetifyThemeClassWriter
  *
