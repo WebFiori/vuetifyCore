@@ -6,18 +6,26 @@ use webfiori\framework\Util;
 
 
 /**
- * Description of CreateVuetifyThemeCommand
+ * A command which can be used to create a Vuetify based theme template.
  *
  * @author Ibrahim
  */
 class CreateVuetifyThemeCommand extends CLICommand {
+    /**
+     * Creates new instance of the class.
+     */
     public function __construct() {
         parent::__construct('create-vuetify-theme', [
         ], 'Creates a theme which will be based on Vuetify UI framework. The created '
                 .'theme will be based on one of the wireframes which exist at '
                 .'https://vuetifyjs.com/en/getting-started/wireframes .');
     }
-    public function exec() {
+    /**
+     * Execute the command.
+     * 
+     * @return int The method will always return 0.
+     */
+    public function exec() : int {
         $wireframes = [
             "Base","Extended Toolbar", "System Bar",
             "Inbox", "Side Navigation",
