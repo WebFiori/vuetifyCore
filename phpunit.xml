@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit colors="true" bootstrap="bootstrap.php">
+    <php>
+    </php>
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <file>./themes/vuetifyCore/cli/CreateVuetifyThemeCommand.php</file>
+            <file>./themes/vuetifyCore/cli/FooterSectionWriter.php</file>
+            <file>./themes/vuetifyCore/cli/HeadSectionWriter.php</file>
+            <file>./themes/vuetifyCore/cli/HeaderSectionWriter.php</file>
+            <file>./themes/vuetifyCore/cli/SideSectionWriter.php</file>
+            <file>./themes/vuetifyCore/cli/SysBarWriter.php</file>
+            <file>./themes/vuetifyCore/cli/VuetifyThemeClassWriter.php</file>
+        </whitelist>
+    </filter>
+    <logging>
+        <log type="coverage-clover" target="clover.xml"/>
+    </logging>
+    <testsuites>
+        <testsuite name="General Tests">
+            <directory>./tests/themes/vuetifyCore</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
