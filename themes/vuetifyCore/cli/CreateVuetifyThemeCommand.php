@@ -31,7 +31,7 @@ class CreateVuetifyThemeCommand extends CLICommand {
             "Inbox", "Side Navigation",
         ];
         $wireframe = $this->select('Select theme wireframe:', $wireframes, 0);
-        $classInfo = $this->getClassInfo('themes\\vuetify');
+        $classInfo = $this->getClassInfo();
         $classInfo['wireframe'] = $wireframe;
         $creator = new VuetifyThemeClassWriter($classInfo);
         $this->println("Creating new vuetify theme based on '$wireframe' wireframe...");
@@ -56,12 +56,12 @@ class CreateVuetifyThemeCommand extends CLICommand {
      * 
      * @since 1.0
      */
-    public function getClassInfo($defaltNs = null) {
+    public function getClassInfo() {
         $classExist = true;
-
+        
         do {
-            $className = $this->_getClassName();
-            $ns = $this->_getNamespace($defaltNs);
+            $className = $this->readClassName('Enter a name for the new class:', 'Theme');
+            $ns = $this->readNamespace('Enter namespace for the class:', 'themes\\vuetify');
             $classWithNs = $ns.'\\'.$className;
             $classExist = class_exists($classWithNs);
 
@@ -69,120 +69,12 @@ class CreateVuetifyThemeCommand extends CLICommand {
                 $this->error('A class in the given namespace which has the given name was found.');
             }
         } while ($classExist);
-        $isFileExist = true;
-
-        do {
-            $path = $this->_getClassPath($ns);
-
-            if (file_exists($path.DS.$className.'.php')) {
-                $this->warning('A file which has the same as the class name was found.');
-                $isReplace = $this->confirm('Would you like to override the file?', false);
-
-                if ($isReplace) {
-                    $isFileExist = false;
-                }
-            } else {
-                $isFileExist = false;
-            }
-        } while ($isFileExist);
-
+        $path = ROOT_DIR.DS.trim(trim(str_replace('\\', DS, str_replace('/', DS, $ns)),'/'),'\\');
+  
         return [
             'name' => $className,
             'namespace' => $ns,
             'path' => $path
         ];
-    }
-
-
-    private function _getClassName() {
-        $isNameValid = false;
-
-        do {
-            $className = trim($this->getInput('Enter a name for the new class:'));
-            $isNameValid = $this->_validateClassName($className);
-
-            if (!$isNameValid) {
-                $this->error('Invalid class name is given.');
-            }
-        } while (!$isNameValid);
-
-        return $className;
-    }
-    private function _getClassPath($default) {
-        $validPath = false;
-
-        do {
-            clearstatcache();
-            $path = $this->getInput("Where would you like to store the class? (must be a directory inside '".ROOT_DIR."')", $default);
-            $fixedPath = ROOT_DIR.DS.trim(trim(str_replace('\\', DS, str_replace('/', DS, $path)),'/'),'\\');
-
-            if (Util::isDirectory($fixedPath, true)) {
-                $validPath = true;
-            } else {
-                $this->error('Provided direcory is not a directory or it does not exist.');
-            }
-        } while (!$validPath);
-
-        return $fixedPath;
-    }
-
-    private function _getNamespace($defaultNs) {
-        $isNameValid = false;
-
-        do {
-            $ns = str_replace('/','\\',trim($this->getInput('Enter an optional namespace for the class:', $defaultNs)));
-            $isNameValid = $this->_validateNamespace($ns);
-
-            if (!$isNameValid) {
-                $this->error('Invalid namespace is given.');
-            }
-        } while (!$isNameValid);
-
-        return trim($ns,'\\');
-    }
-    private function _validateClassName($name) {
-        $len = strlen($name);
-
-        if ($len > 0) {
-            for ($x = 0 ; $x < $len ; $x++) {
-                $char = $name[$x];
-
-                if ($x == 0 && $char >= '0' && $char <= '9') {
-                    return false;
-                }
-
-                if (!(($char <= 'Z' && $char >= 'A') || ($char <= 'z' && $char >= 'a') || ($char >= '0' && $char <= '9') || $char == '_')) {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        return false;
-    }
-    private function _validateNamespace($ns) {
-        if ($ns == '\\') {
-            return true;
-        }
-        $split = explode('\\', $ns);
-
-        foreach ($split as $subNs) {
-            $len = strlen($subNs);
-
-            for ($x = 0 ; $x < $len ; $x++) {
-                $char = $subNs[$x];
-
-                if ($x == 0 && $char >= '0' && $char <= '9') {
-                    return false;
-                }
-
-                if (!(($char <= 'Z' && $char >= 'A') || ($char <= 'z' && $char >= 'a') || ($char >= '0' && $char <= '9') || $char == '_')) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
     }
 }
