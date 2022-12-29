@@ -1,7 +1,12 @@
 {
     "name": "webfiori/vuetify-core",
     "description": "A base theme which holds basic structure for building Vuetify based themes.",
-    "authors": [
+    "homepage": "https://webfiori.com",
+    "support": {
+        "issues": "https://github.com/WebFiori/vuetifyCore/issues",
+        "source": "https://github.com/WebFiori/vuetifyCore"
+    },
+     "authors": [
         {
             "name": "Ibrahim BinAlshikh",
             "email": "ibrahim@webfiori.com"
@@ -11,7 +16,7 @@
         "php": ">=7.0"
     },
     "require-dev": {
-        "webfiori/framework":"*"
+        "webfiori/framework":"dev-dev"
     },
     "keywords": [
         "framework",
