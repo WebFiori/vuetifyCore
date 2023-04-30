@@ -2,7 +2,7 @@
 namespace themes\vuetifyCore;
 
 use webfiori\framework\ui\WebPage;
-use webfiori\framework\WebFioriApp;
+use webfiori\framework\App;
 use webfiori\json\Json;
 use webfiori\ui\HTMLNode;
 
@@ -87,7 +87,7 @@ class VuetifyWebPage extends WebPage {
             $page->removeChild('vue-script');
             $page->getDocument()->addChild('script', [
                 'type' => 'text/javascript',
-                'src' => $jsPath.'?jv='.WebFioriApp::getAppConfig()->getVersion(),
+                'src' => $jsPath.'?jv='.App::getAppConfig()->getVersion(),
                 'id' => 'vue-script'
             ]);
         }, 0, [$jsFilePath]);
