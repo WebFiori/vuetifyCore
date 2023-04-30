@@ -47,9 +47,11 @@ class FooterSectionWriter extends ClassWriter {
     }
 
     public function writeClassComment() {
-        $this->append('/**');
-        $this->append('  * This class represents footer section of the theme.');
-        $this->append('  */');
+        $this->append([
+            '/**',
+            '  * This class represents footer section of the theme.',
+            '  */'
+        ]);
     }
 
     public function writeClassDeclaration() {
