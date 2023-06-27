@@ -87,7 +87,7 @@ class VuetifyWebPage extends WebPage {
             $page->removeChild('vue-script');
             $page->getDocument()->addChild('script', [
                 'type' => 'text/javascript',
-                'src' => $jsPath.'?jv='.App::getAppConfig()->getVersion(),
+                'src' => $jsPath.'?jv='.App::getConfig()->getAppVersion(),
                 'id' => 'vue-script'
             ]);
         }, 0, [$jsFilePath]);
