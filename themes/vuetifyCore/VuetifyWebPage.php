@@ -40,11 +40,11 @@ class VuetifyWebPage extends WebPage {
             $p->addBeforeRender(function (VuetifyWebPage $p2) {
                 $jsCode = new HTMLNode('script', [
                     'id' => 'server-json-data',
-                    'nonce' => hash('sha256', microtime().'-'.random_bytes(10))
+                    'nonce' => str_replace('=','',base64_encode(hash('sha256', microtime().'-'. random_bytes(10))))
                 ]);
                 $jsCode->text('data = '.$p2->getJson(), false);
                 $p2->getDocument()->getHeadNode()->addChild($jsCode);
-            });
+            },100);
         }, 100);
         $this->jsonData = new Json();
     }
