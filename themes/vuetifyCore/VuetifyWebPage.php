@@ -87,11 +87,11 @@ class VuetifyWebPage extends WebPage {
             if (!strpos($jsPath, $base) === false) {
                 $jsPath = trim($base,"/").'/'.trim($jsPath, "/");
             }
-            $page->removeChild('vue-script');
+            $page->removeChild('vue-init');
             $page->getDocument()->addChild('script', [
                 'type' => 'text/javascript',
                 'src' => $jsPath.'?jv='.App::getConfig()->getAppVersion(),
-                'id' => 'vue-script'
+                'id' => 'vue-init'
             ]);
         }, 0, [$jsFilePath]);
     }
