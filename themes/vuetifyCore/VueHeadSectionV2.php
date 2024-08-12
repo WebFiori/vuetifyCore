@@ -13,7 +13,7 @@ class VueHeadSectionV2 extends CommonHead {
      */
     public function __construct(WebPage $page) {
         parent::__construct($page);
-        $vueVersion = '2.7.6';
+        $vueVersion = '2.7.16';
         $vuetifyVersion = '2.7.2';
         
         if (WF_VERBOSE) {
