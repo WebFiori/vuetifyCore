@@ -47,7 +47,7 @@ abstract class VuetifyThemeCore extends Theme {
             $page->getDocument()->getBody()->addChild($vueEl);
             $page->getChildByID('main-content-area')->setNodeName('v-main');
             $page->getDocument()->addChild('script', [
-                'id' => 'vue-script',
+                'id' => 'vue-init',
                 'src' => 'https://cdn.jsdelivr.net/gh/webfiori/vuetifyCore@1.x.x/themes/vuetifyCore/default.js'
             ]);
         });
