@@ -13,10 +13,10 @@
         }
     ],
     "require": {
-        "php": ">=7.0"
+        "php": ">=8.0"
     },
     "require-dev": {
-        "webfiori/framework":"dev-dev"
+        "webfiori/framework":"*"
     },
     "keywords": [
         "framework",
