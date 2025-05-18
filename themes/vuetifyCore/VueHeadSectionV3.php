@@ -11,12 +11,15 @@ use webfiori\framework\ui\WebPage;
 class VueHeadSectionV3 extends CommonHead {
     public function __construct(WebPage $page) {
         parent::__construct($page);
-        $vueVersion = '3.4.38';
-        $vuetifyVersion = '3.7.0';
         
+        define('VUE_VERSION', '3.5.14');
+        define('VUETIFY_VERSION', '3.7.8');
+        
+        $vueVersion = VUE_VERSION;
+        $vuetifyVersion = VUETIFY_VERSION;
         if (WF_VERBOSE) {
             $this->addJs("https://unpkg.com/vue@$vueVersion/dist/vue.global.js", [
-                'integrity' => "sha256-1Qx6XHZstesVjfLvZMC0ajCH251OgRQHo0/dsQKq+iA=",
+                'integrity' => "sha256-pMWQ5r9rnIyHnjdyvp6GlqmxIr/veom1EbAa22k8fu0=",
                 'crossorigin' => "anonymous",
                 'id' => 'vue-script',
                 'version' => $vueVersion
@@ -24,32 +27,32 @@ class VueHeadSectionV3 extends CommonHead {
             
         } else {
             $this->addJs("https://unpkg.com/vue@$vueVersion/dist/vue.global.prod.js", [
-                'integrity' => "sha256-tQ7u/jXUFja7lskrQPHfC0+3kU4Hs8YlsewV6XSHZ7k=",
+                'integrity' => "sha256-ewTfzPdWQgxTZNeP25A9hU8AQCfVrFVIzJQA5el11nw=",
                 'crossorigin' => "anonymous",
                 'id' => 'vue-script',
                 'version' => $vueVersion
             ]);
         }
         $this->addCSS("https://cdnjs.cloudflare.com/ajax/libs/vuetify/$vuetifyVersion/vuetify.min.css", [
-            'integrity' => "sha256-Zeo1HaJcT3vsIiti7p+5fcOBZoKVRryOt2urVcZCd+Y=",
+            'integrity' => "sha256-Dlnp/rmEf5MhIrKZ5rNvXH1C+gW5S0eczEPPdHtIVDg=",
             'crossorigin' => "anonymous",
             'id' => 'vuetify-css',
             'version' => $vuetifyVersion
         ]);
         $this->addCSS("https://cdnjs.cloudflare.com/ajax/libs/vuetify/$vuetifyVersion/vuetify-labs.min.css", [
-            'integrity' => "sha256-20Vz8LbqHOXecrKd56gzolekLtDYSN9P6v63Q3I3QOQ=",
+            'integrity' => "sha256-SfpdqbfoTXHiaZrXGNV3D3IKogXsj99VJ1TYowZ53nw=",
             'crossorigin' => "anonymous",
             'id' => 'vuetify-labs-css',
             'version' => $vuetifyVersion
         ]);
         $this->addJs("https://cdnjs.cloudflare.com/ajax/libs/vuetify/$vuetifyVersion/vuetify.min.js", [
-            'integrity' => "sha256-XPHMrdnnWx5e9Hwyrv/mCplodeoPAqCBoSFudcXB6tk=",
+            'integrity' => "sha256-f9d1J5BICD5jgnzKaWeHZL4IXPkjh04tKPQRo8T2awY=",
             'crossorigin' => "anonymous",
             'id' => 'vuetify-script',
             'version' => $vuetifyVersion
         ]);
         $this->addJs("https://cdnjs.cloudflare.com/ajax/libs/vuetify/$vuetifyVersion/vuetify-labs.min.js", [
-            'integrity' => "sha256-gQusreKYnkVllreEEjHU6uKA4JupLr1ER+DJ4jzcfjU=",
+            'integrity' => "sha256-kDjMygj+Kz7W1UO7mhNwVvKeZy99WuiDyz/CueRp5eI=",
             'crossorigin' => "anonymous",
             'id' => 'vuetify-labs-script',
             'version' => $vuetifyVersion
