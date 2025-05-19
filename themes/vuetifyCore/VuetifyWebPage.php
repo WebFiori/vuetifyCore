@@ -27,6 +27,7 @@ class VuetifyWebPage extends WebPage {
      * @var Json
      */
     private $jsonData;
+    private $jsFolderPath;
     /**
      * Creates new instance of the class.
      */
@@ -65,6 +66,24 @@ class VuetifyWebPage extends WebPage {
         }
     }
     /**
+     * Adds a mixins JS file to the head tag.
+     * 
+     * @param string $fileName The name of the mixins file such as 'add-user-mixins.js'.
+     * 
+     * @param string|null $path An optional path that points to the location
+     * of the file in public folder. If not specified, the method will use same
+     * path as the primary vue script.
+     */
+    public function addMixins(string $fileName, ?string $path = null) {
+        if ($path === null) {
+            $path = $this->jsFolderPath;
+        }
+        if ($path === null) {
+            return;
+        }
+        $this->addJS($path.$fileName);
+    }
+    /**
      * Returns an object of type Json that contains all JSON attributes which 
      * will be added to the global 'data' JavaScript object.
      * 
@@ -82,6 +101,7 @@ class VuetifyWebPage extends WebPage {
      * file such as 'assets/js/init-vue.js'.
      */
     public function setVueScript($jsFilePath) {
+        
         $this->addBeforeRender(function (WebPage $page, string $jsPath)
         {
             $base = $page->getBase();
@@ -119,8 +139,9 @@ class VuetifyWebPage extends WebPage {
         $className = $expl[count($expl) - 1];
         $fileName = CaseConverter::toKebabCase($className, 'lower').'.js';
         $trim1 = substr($clazz, strlen($pagesFolder));
+        $this->jsFolderPath = 'assets/js'.str_replace('\\', '/', substr($trim1, 0, -1*strlen($className)));
         
-        return 'assets/js'.str_replace('\\', '/', substr($trim1, 0, -1*strlen($className))).$fileName;
+        return $this->jsFolderPath.$fileName;
     }
     /**
      * Converts an array of labels to JSON objects which could be used as items 
