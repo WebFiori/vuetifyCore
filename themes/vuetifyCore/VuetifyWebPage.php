@@ -124,7 +124,9 @@ class VuetifyWebPage extends WebPage {
             foreach ($data as $key => $lbl) {
                 $jsonItem = new Json([
                     'text' => $lbl,
-                    'value' => $key
+                    'value' => $key,
+                    'title' => $lbl,
+                    'key' => $key
                 ]);
                 
                 if (isset($extraAttrs[$key]) && gettype($extraAttrs[$key]) == 'array') {
