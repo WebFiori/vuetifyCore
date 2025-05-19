@@ -1,8 +1,9 @@
 <?php
 namespace themes\vuetifyCore;
 
-use webfiori\framework\ui\WebPage;
 use webfiori\framework\App;
+use webfiori\framework\ui\WebPage;
+use webfiori\json\CaseConverter;
 use webfiori\json\Json;
 use webfiori\ui\HTMLNode;
 
@@ -11,7 +12,7 @@ use webfiori\ui\HTMLNode;
  * 
  * This class serves two objectives. First is to help in setting the script
  * which is used to initialize Vue and Vuetify. The script is appended to the
- * body of the page with &lt;script&gt; element with 'id='vue-script'.
+ * body of the page with &lt;script&gt; element with 'id='vue-init'.
  * 
  * Secondly, it provides developer with the global 'data' JavaScript object at
  * which the developer can use to pass values from backend to the rendered
@@ -26,6 +27,7 @@ class VuetifyWebPage extends WebPage {
      * @var Json
      */
     private $jsonData;
+    private $jsFolderPath;
     /**
      * Creates new instance of the class.
      */
@@ -47,6 +49,7 @@ class VuetifyWebPage extends WebPage {
             },100);
         }, 100);
         $this->jsonData = new Json();
+        $this->setVueScript($this->getPrimaryVueFilePath());
     }
     /**
      * Adds a set of attributes to the global 'data' JavaScript object.
@@ -61,6 +64,24 @@ class VuetifyWebPage extends WebPage {
         foreach ($arrOfAttrs as $attrKey => $attrVal) {
             $this->getJson()->add($attrKey, $attrVal);
         }
+    }
+    /**
+     * Adds a mixins JS file to the head tag.
+     * 
+     * @param string $fileName The name of the mixins file such as 'add-user-mixins.js'.
+     * 
+     * @param string|null $path An optional path that points to the location
+     * of the file in public folder. If not specified, the method will use same
+     * path as the primary vue script.
+     */
+    public function addMixins(string $fileName, ?string $path = null) {
+        if ($path === null) {
+            $path = $this->jsFolderPath;
+        }
+        if ($path === null) {
+            return;
+        }
+        $this->addJS($path.$fileName);
     }
     /**
      * Returns an object of type Json that contains all JSON attributes which 
@@ -80,6 +101,7 @@ class VuetifyWebPage extends WebPage {
      * file such as 'assets/js/init-vue.js'.
      */
     public function setVueScript($jsFilePath) {
+        
         $this->addBeforeRender(function (WebPage $page, string $jsPath)
         {
             $base = $page->getBase();
@@ -94,6 +116,32 @@ class VuetifyWebPage extends WebPage {
                 'id' => 'vue-init'
             ]);
         }, 0, [$jsFilePath]);
+    }
+    /**
+     * Constructs and returns a default path for the primary JavaScript file
+     * that has code which is used to initialize vue application.
+     * 
+     * The method will construct the path as follows, first, it will take
+     * the name of the class, including namestace and convert it to kebab
+     * case and convert all characters to lower case. 
+     * 
+     * Note that the method assumes that the class is created inside the folder
+     * '[APP_DIR]/pages' of the application. Also, it assumes that the JS file
+     * will be inside the folder '[public-folder]/assets/js'.
+     * 
+     * 
+     * @return string A string such as 'assets/js/my-page.js'.
+     */
+    public function getPrimaryVueFilePath() {
+        $pagesFolder = APP_DIR.'\\'.'pages';
+        $clazz = static::class;
+        $expl = explode('\\', $clazz);
+        $className = $expl[count($expl) - 1];
+        $fileName = CaseConverter::toKebabCase($className, 'lower').'.js';
+        $trim1 = substr($clazz, strlen($pagesFolder));
+        $this->jsFolderPath = 'assets/js'.str_replace('\\', '/', substr($trim1, 0, -1*strlen($className)));
+        
+        return $this->jsFolderPath.$fileName;
     }
     /**
      * Converts an array of labels to JSON objects which could be used as items 
@@ -124,7 +172,9 @@ class VuetifyWebPage extends WebPage {
             foreach ($data as $key => $lbl) {
                 $jsonItem = new Json([
                     'text' => $lbl,
-                    'value' => $key
+                    'value' => $key,
+                    'title' => $lbl,
+                    'key' => $key
                 ]);
                 
                 if (isset($extraAttrs[$key]) && gettype($extraAttrs[$key]) == 'array') {
