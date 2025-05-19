@@ -1,8 +1,9 @@
 <?php
 namespace themes\vuetifyCore;
 
-use webfiori\framework\ui\WebPage;
 use webfiori\framework\App;
+use webfiori\framework\ui\WebPage;
+use webfiori\json\CaseConverter;
 use webfiori\json\Json;
 use webfiori\ui\HTMLNode;
 
@@ -11,7 +12,7 @@ use webfiori\ui\HTMLNode;
  * 
  * This class serves two objectives. First is to help in setting the script
  * which is used to initialize Vue and Vuetify. The script is appended to the
- * body of the page with &lt;script&gt; element with 'id='vue-script'.
+ * body of the page with &lt;script&gt; element with 'id='vue-init'.
  * 
  * Secondly, it provides developer with the global 'data' JavaScript object at
  * which the developer can use to pass values from backend to the rendered
@@ -47,6 +48,7 @@ class VuetifyWebPage extends WebPage {
             },100);
         }, 100);
         $this->jsonData = new Json();
+        $this->setVueScript($this->getPrimaryVueFilePath());
     }
     /**
      * Adds a set of attributes to the global 'data' JavaScript object.
@@ -94,6 +96,31 @@ class VuetifyWebPage extends WebPage {
                 'id' => 'vue-init'
             ]);
         }, 0, [$jsFilePath]);
+    }
+    /**
+     * Constructs and returns a default path for the primary JavaScript file
+     * that has code which is used to initialize vue application.
+     * 
+     * The method will construct the path as follows, first, it will take
+     * the name of the class, including namestace and convert it to kebab
+     * case and convert all characters to lower case. 
+     * 
+     * Note that the method assumes that the class is created inside the folder
+     * '[APP_DIR]/pages' of the application. Also, it assumes that the JS file
+     * will be inside the folder '[public-folder]/assets/js'.
+     * 
+     * 
+     * @return string A string such as 'assets/js/my-page.js'.
+     */
+    public function getPrimaryVueFilePath() {
+        $pagesFolder = APP_DIR.'\\'.'pages';
+        $clazz = static::class;
+        $expl = explode('\\', $clazz);
+        $className = $expl[count($expl) - 1];
+        $fileName = CaseConverter::toKebabCase($className, 'lower').'.js';
+        $trim1 = substr($clazz, strlen($pagesFolder));
+        
+        return 'assets/js'.str_replace('\\', '/', substr($trim1, 0, -1*strlen($className))).$fileName;
     }
     /**
      * Converts an array of labels to JSON objects which could be used as items 
