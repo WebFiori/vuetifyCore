@@ -29,6 +29,11 @@ class VuetifyWebPage extends WebPage {
     private $jsonData;
     private $jsFolderPath;
     /**
+     * 
+     * @var type
+     */
+    private $jsScriptRender;
+    /**
      * Creates new instance of the class.
      */
     public function __construct() {
@@ -101,9 +106,10 @@ class VuetifyWebPage extends WebPage {
      * file such as 'assets/js/init-vue.js'.
      */
     public function setVueScript($jsFilePath) {
-        
-        $this->addBeforeRender(function (WebPage $page, string $jsPath)
-        {
+        if ($this->jsScriptRender === null) {
+            $this->jsScriptRender = $this->addBeforeRender(function (){}, 0);
+        }
+        $this->jsScriptRender->setCallback(function (WebPage $page, string $jsPath) {
             $base = $page->getBase();
             
             if (!strpos($jsPath, $base) === false) {
@@ -115,7 +121,7 @@ class VuetifyWebPage extends WebPage {
                 'src' => $jsPath.'?jv='.App::getConfig()->getAppVersion(),
                 'id' => 'vue-init'
             ]);
-        }, 0, [$jsFilePath]);
+        }, [$jsFilePath]);
     }
     /**
      * Constructs and returns a default path for the primary JavaScript file
