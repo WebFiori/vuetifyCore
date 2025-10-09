@@ -1,8 +1,8 @@
 <?php
 
-namespace themes\vuetifyCore\cli;
+namespace Themes\VuetifyCore\Cli;
 
-use webfiori\framework\writers\ClassWriter;
+use WebFiori\Framework\Writers\ClassWriter;
 
 /**
  * A class which is used to write footer section class of the theme.
@@ -21,8 +21,8 @@ class FooterSectionWriter extends ClassWriter {
     public function __construct(VuetifyThemeClassWriter $writer) {
         parent::__construct('FooterSection', $writer->getPath(), $writer->getNamespace());
 
-        $this->addUseStatement('webfiori\framework\ui\WebPage');
-        $this->addUseStatement('webfiori\\ui\\HTMLNode');
+        $this->addUseStatement('WebFiori\Framework\ui\WebPage');
+        $this->addUseStatement('WebFiori\\UI\\HTMLNode');
         $this->wf = $writer->getWireframe();
         
         

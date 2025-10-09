@@ -1,12 +1,12 @@
 <?php
 
-namespace themes\vuetifyCore;
+namespace Themes\VuetifyCore;
 
-use webfiori\framework\App;
-use webfiori\framework\ui\WebPage;
-use webfiori\ui\HeadNode;
-use webfiori\ui\HTMLNode;
-use webfiori\ui\JsCode;
+use WebFiori\Framework\App;
+use WebFiori\Framework\ui\WebPage;
+use WebFiori\UI\HeadNode;
+use WebFiori\Ui\HTMLNode;
+use WebFiori\UI\JsCode;
 /**
  * A base class that represents a &lt;head&gt; tag.
  * 

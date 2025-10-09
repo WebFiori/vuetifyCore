@@ -1,11 +1,11 @@
 <?php
-namespace themes\vuetifyCore;
+namespace Themes\VuetifyCore;
 
-use webfiori\framework\App;
-use webfiori\framework\ui\WebPage;
-use webfiori\json\CaseConverter;
-use webfiori\json\Json;
-use webfiori\ui\HTMLNode;
+use WebFiori\Framework\App;
+use WebFiori\Framework\Ui\WebPage;
+use WebFiori\Json\CaseConverter;
+use WebFiori\Json\Json;
+use WebFiori\Ui\HTMLNode;
 
 /**
  * The base page which is used to created pages which is based on Vuetify.

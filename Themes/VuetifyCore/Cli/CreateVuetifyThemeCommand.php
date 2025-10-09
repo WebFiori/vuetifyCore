@@ -1,7 +1,7 @@
 <?php
-namespace themes\vuetifyCore\cli;
+namespace Themes\VuetifyCore\Cli;
 
-use webfiori\cli\CLICommand;
+use WebFiori\Cli\Command;
 
 
 /**
@@ -9,7 +9,7 @@ use webfiori\cli\CLICommand;
  *
  * @author Ibrahim
  */
-class CreateVuetifyThemeCommand extends CLICommand {
+class CreateVuetifyThemeCommand extends Command {
     /**
      * Creates new instance of the class.
      */
@@ -60,7 +60,7 @@ class CreateVuetifyThemeCommand extends CLICommand {
         
         do {
             $className = $this->readClassName('Enter a name for the new class:', 'Theme');
-            $ns = $this->readNamespace('Enter namespace for the class:', 'themes\\vuetify');
+            $ns = $this->readNamespace('Enter namespace for the class:', 'Themes\\Vuetify');
             $classWithNs = $ns.'\\'.$className;
             $classExist = class_exists($classWithNs);
 

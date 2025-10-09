@@ -1,8 +1,8 @@
 <?php
 
-namespace themes\vuetifyCore\cli;
+namespace Themes\VuetifyCore\Cli;
 
-use webfiori\framework\writers\ClassWriter;
+use WebFiori\Framework\Writers\ClassWriter;
 
 /**
  * A class which is used to write head section class of the theme.
@@ -12,8 +12,8 @@ use webfiori\framework\writers\ClassWriter;
 class HeadSectionWriter extends ClassWriter {
     public function __construct(VuetifyThemeClassWriter $writer) {
         parent::__construct('HeadSection', $writer->getPath(), $writer->getNamespace());
-        $this->addUseStatement('webfiori\framework\ui\WebPage');
-        $this->addUseStatement('webfiori\\ui\\HeadNode');
+        $this->addUseStatement('WebFiori\Framework\ui\WebPage');
+        $this->addUseStatement('WebFiori\\UI\\HeadNode');
     }
     public function writeClassBody() {
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace themes\vuetifyCore\cli;
+namespace Themes\VuetifyCore\Cli;
 
-use webfiori\framework\writers\ClassWriter;
+use WebFiori\Framework\Writers\ClassWriter;
 
 /**
  * A class which is used to write system bar section class of the theme.
@@ -18,8 +18,8 @@ class SysBarWriter extends ClassWriter {
     public function __construct(VuetifyThemeClassWriter $writer) {
         parent::__construct('SystemBarSection', $writer->getPath(), $writer->getNamespace());
 
-        $this->addUseStatement('webfiori\framework\ui\WebPage');
-        $this->addUseStatement('use webfiori\\ui\\HTMLNode');
+        $this->addUseStatement('WebFiori\Framework\ui\WebPage');
+        $this->addUseStatement('use WebFiori\\UI\\HTMLNode');
         $this->wf = $writer->getWireframe();
     }
     public function getWireframe() : string {

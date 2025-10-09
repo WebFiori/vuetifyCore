@@ -1,8 +1,8 @@
 <?php
-namespace themes\vuetifyCore;
+namespace Themes\VuetifyCore;
 
-use webfiori\framework\Theme;
-use webfiori\ui\HTMLNode;
+use WebFiori\Framework\Theme;
+use WebFiori\Ui\HTMLNode;
 /**
  * A base theme for creating Vuetify based themes.
  * 

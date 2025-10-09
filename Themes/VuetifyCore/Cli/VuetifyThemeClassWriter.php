@@ -1,7 +1,7 @@
 <?php
-namespace themes\vuetifyCore\cli;
+namespace Themes\VuetifyCore\Cli;
 
-use webfiori\framework\writers\ClassWriter;
+use WebFiori\Framework\Writers\ClassWriter;
 /**
  * Description of VuetifyThemeClassWriter
  *
@@ -16,9 +16,9 @@ class VuetifyThemeClassWriter extends ClassWriter {
         $this->wireframe = $classInfoArr['wireframe'];
         $ns = $this->getNamespace();
         
-        $this->addUseStatement('themes\\vuetifyCore\\VuetifyThemeCore;');
-        $this->addUseStatement('webfiori\\ui\\HTMLNode;');
-        $this->addUseStatement('webfiori\ui\HeadNode');
+        $this->addUseStatement('Themes\\VuetifyCore\\VuetifyThemeCore;');
+        $this->addUseStatement('WebFiori\\UI\\HTMLNode;');
+        $this->addUseStatement('WebFiori\UI\HeadNode');
         
         $this->addUseStatement($ns.'\\AsideSection');
         $this->addUseStatement($ns.'\\FooterSection');
