@@ -26,8 +26,11 @@ class CreateVuetifyThemeCommand extends Command {
      */
     public function exec() : int {
         $wireframes = [
-            "Base","Extended Toolbar", "System Bar",
-            "Inbox", "Side Navigation",
+            "Base",
+            "Extended Toolbar", 
+            "System Bar",
+            "Inbox", 
+            "Side Navigation",
         ];
         $wireframe = $this->select('Select theme wireframe:', $wireframes, 0);
         $classInfo = $this->getClassInfo();
@@ -68,7 +71,7 @@ class CreateVuetifyThemeCommand extends Command {
                 $this->error('A class in the given namespace which has the given name was found.');
             }
         } while ($classExist);
-        $path = ROOT_DIR.DS.trim(trim(str_replace('\\', DS, str_replace('/', DS, $ns)),'/'),'\\');
+        $path = ROOT_PATH.DS.trim(trim(str_replace('\\', DS, str_replace('/', DS, $ns)),'/'),'\\');
   
         return [
             'name' => $className,
