@@ -3,10 +3,10 @@
 namespace Themes\VuetifyCore;
 
 use WebFiori\Framework\App;
-use WebFiori\Framework\ui\WebPage;
-use WebFiori\UI\HeadNode;
+use WebFiori\Framework\Ui\WebPage;
+use WebFiori\Ui\HeadNode;
 use WebFiori\Ui\HTMLNode;
-use WebFiori\UI\JsCode;
+use WebFiori\Ui\JsCode;
 /**
  * A base class that represents a &lt;head&gt; tag.
  * 

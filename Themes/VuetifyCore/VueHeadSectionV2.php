@@ -1,7 +1,7 @@
 <?php
 namespace Themes\VuetifyCore;
 
-use WebFiori\Framework\ui\WebPage;
+use WebFiori\Framework\Ui\WebPage;
 /**
  * This class represents head section the theme.
  * 

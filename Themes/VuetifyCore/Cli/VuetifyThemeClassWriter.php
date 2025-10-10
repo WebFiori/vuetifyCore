@@ -17,8 +17,8 @@ class VuetifyThemeClassWriter extends ClassWriter {
         $ns = $this->getNamespace();
         
         $this->addUseStatement('Themes\\VuetifyCore\\VuetifyThemeCore;');
-        $this->addUseStatement('WebFiori\\UI\\HTMLNode;');
-        $this->addUseStatement('WebFiori\UI\HeadNode');
+        $this->addUseStatement('WebFiori\\Ui\\HTMLNode;');
+        $this->addUseStatement('WebFiori\Ui\HeadNode');
         
         $this->addUseStatement($ns.'\\AsideSection');
         $this->addUseStatement($ns.'\\FooterSection');

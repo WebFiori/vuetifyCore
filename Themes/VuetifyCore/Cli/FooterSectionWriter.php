@@ -21,8 +21,8 @@ class FooterSectionWriter extends ClassWriter {
     public function __construct(VuetifyThemeClassWriter $writer) {
         parent::__construct('FooterSection', $writer->getPath(), $writer->getNamespace());
 
-        $this->addUseStatement('WebFiori\Framework\ui\WebPage');
-        $this->addUseStatement('WebFiori\\UI\\HTMLNode');
+        $this->addUseStatement('WebFiori\Framework\Ui\WebPage');
+        $this->addUseStatement('WebFiori\\Ui\\HTMLNode');
         $this->wf = $writer->getWireframe();
         
         

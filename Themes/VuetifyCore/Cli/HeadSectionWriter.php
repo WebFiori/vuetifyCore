@@ -12,8 +12,8 @@ use WebFiori\Framework\Writers\ClassWriter;
 class HeadSectionWriter extends ClassWriter {
     public function __construct(VuetifyThemeClassWriter $writer) {
         parent::__construct('HeadSection', $writer->getPath(), $writer->getNamespace());
-        $this->addUseStatement('WebFiori\Framework\ui\WebPage');
-        $this->addUseStatement('WebFiori\\UI\\HeadNode');
+        $this->addUseStatement('WebFiori\Framework\Ui\WebPage');
+        $this->addUseStatement('WebFiori\\Ui\\HeadNode');
     }
     public function writeClassBody() {
 

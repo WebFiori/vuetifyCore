@@ -18,8 +18,8 @@ class SysBarWriter extends ClassWriter {
     public function __construct(VuetifyThemeClassWriter $writer) {
         parent::__construct('SystemBarSection', $writer->getPath(), $writer->getNamespace());
 
-        $this->addUseStatement('WebFiori\Framework\ui\WebPage');
-        $this->addUseStatement('use WebFiori\\UI\\HTMLNode');
+        $this->addUseStatement('WebFiori\Framework\Ui\WebPage');
+        $this->addUseStatement('use WebFiori\\Ui\\HTMLNode');
         $this->wf = $writer->getWireframe();
     }
     public function getWireframe() : string {
