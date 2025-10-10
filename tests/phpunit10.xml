@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" colors="true" bootstrap="bootstrap.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd" cacheDirectory=".phpunit.cache">
+  <coverage includeUncoveredFiles="true">
+    <report>
+      <clover outputFile="clover.xml"/>
+    </report>
+  </coverage>
+  <php>
+    </php>
+  <logging/>
+  <testsuites>
+    <testsuite name="VuetifyCore Tests">
+      <directory>./Themes/VuetifyCore</directory>
+    </testsuite>
+  </testsuites>
+  <source>
+    <include>
+      <directory>./Themes/VuetifyCore</directory>
+    </include>
+  </source>
+</phpunit>

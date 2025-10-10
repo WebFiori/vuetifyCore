@@ -2,3 +2,7 @@
 /vendor
 .php_cs.cache
 php-cs-fixer-v2.phar
+*.Identifier
+/tests/.phpunit.cache
+/.vscode
+tests/clover.xml
