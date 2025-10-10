@@ -4,3 +4,5 @@
 php-cs-fixer-v2.phar
 *.Identifier
 /tests/.phpunit.cache
+/.vscode
+tests/clover.xml
