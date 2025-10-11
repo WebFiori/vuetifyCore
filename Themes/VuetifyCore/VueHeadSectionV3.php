@@ -9,7 +9,7 @@ use WebFiori\Framework\Ui\WebPage;
  * 
  */
 class VueHeadSectionV3 extends CommonHead {
-    public function __construct(WebPage $page) {
+    public function __construct(?WebPage $page = null) {
         parent::__construct($page);
         
         define('VUE_VERSION', '3.5.22');
@@ -34,10 +34,6 @@ class VueHeadSectionV3 extends CommonHead {
                 'version' => $vueVersion
             ]);
         }
-        $this->addCSS("https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.4.47/css/materialdesignicons.min.css", [
-            'integrity' => "sha256-A/48q6BeZbFOQDUTnu6JsSvofNC880KsOIZ3Duw6mWI=",
-            'crossorigin' => "anonymous"
-        ]);
         $this->addCSS("https://cdnjs.cloudflare.com/ajax/libs/vuetify/$vuetifyVersion/vuetify.min.css", [
             'integrity' => "sha256-hX27sGJbWKQMwtOB6Wi24yy0c/sF1ZD3PQbnpAMV+/U=",
             'crossorigin' => "anonymous",
@@ -45,7 +41,7 @@ class VueHeadSectionV3 extends CommonHead {
             'version' => $vuetifyVersion
         ]);
         $this->addCSS("https://cdnjs.cloudflare.com/ajax/libs/vuetify/$vuetifyVersion/vuetify-labs.min.css", [
-            'integrity' => "sha256-NPHYAkvbGN9rN5PLyexRnLP1eXJE4JuRb3Jeyrd7EP4==",
+            'integrity' => "sha256-NPHYAkvbGN9rN5PLyexRnLP1eXJE4JuRb3Jeyrd7EP4=",
             'crossorigin' => "anonymous",
             'id' => 'vuetify-labs-css',
             'version' => $vuetifyVersion
