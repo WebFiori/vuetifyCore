@@ -11,10 +11,13 @@ class VueHeadSectionV2 extends CommonHead {
     /**
      * Creates new instance of the class.
      */
-    public function __construct(WebPage $page) {
+    public function __construct(?WebPage $page = null) {
         parent::__construct($page);
-        $vueVersion = '2.7.16';
-        $vuetifyVersion = '2.7.2';
+        define('VUE_VERSION', '2.7.16');
+        define('VUETIFY_VERSION', '2.7.2');
+
+        $vueVersion = VUE_VERSION;
+        $vuetifyVersion = VUETIFY_VERSION;
         
         if (defined('WF_VERBOSE') && WF_VERBOSE) {
             $this->addJs("https://unpkg.com/vue@$vueVersion/dist/vue.js", [
