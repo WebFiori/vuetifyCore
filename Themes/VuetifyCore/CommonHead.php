@@ -19,7 +19,7 @@ class CommonHead extends HeadNode {
     /**
      * Creates new instance of the class.
      */
-    public function __construct(WebPage $page) {
+    public function __construct(?WebPage $page = null) {
         parent::__construct();
         $this->addJs('https://unpkg.com/ajaxrequest-helper@2.1.9/AJAXRequest.js', [
             'integrity' => "sha256-s9Ds9XxJtxeXIpTz5boTwnVxkYJ6lQ/SlkqNsebuCjQ=",
@@ -27,9 +27,17 @@ class CommonHead extends HeadNode {
             'id' => 'ajaxrequest-helper'
         ]);
 
-        $this->addLink('icon', App::getConfig()->getBaseURL().'/favicon.ico', [
-            'id' => 'favicon'
-        ]);
+        try {
+            $this->addLink('icon', App::getConfig()->getBaseURL().'/favicon.ico', [
+                'id' => 'favicon'
+            ]);
+        } catch (\Throwable $ex) {
+            $this->addLink('icon', 'favicon.ico', [
+                'id' => 'favicon'
+            ]);
+        }
+
+        
         $this->addCSS('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
         $this->addCSS('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.4.47/css/materialdesignicons.min.css', [
             'integrity' => "sha256-A/48q6BeZbFOQDUTnu6JsSvofNC880KsOIZ3Duw6mWI=",
@@ -37,7 +45,7 @@ class CommonHead extends HeadNode {
             'id' => 'MaterialDesign-Webfont'
         ]);
 
-        if (!(defined('TESTING') && TESTING) && !(defined('STAGING') && STAGING)) {
+        if ($page !== null && !(defined('TESTING') && TESTING) && !(defined('STAGING') && STAGING)) {
             $page->addBeforeRender(function (WebPage $p) {
                 
                 $head = $p->getDocument()->getHeadNode();
