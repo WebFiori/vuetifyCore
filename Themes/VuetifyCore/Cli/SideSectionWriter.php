@@ -2,7 +2,9 @@
 
 namespace Themes\VuetifyCore\Cli;
 
+use WebFiori\Framework\Ui\WebPage;
 use WebFiori\Framework\Writers\ClassWriter;
+use WebFiori\Ui\HTMLNode;
 
 /**
  * A class which is used to write footer section class of the theme.
@@ -18,8 +20,9 @@ class SideSectionWriter extends ClassWriter {
     public function __construct(VuetifyThemeClassWriter $writer) {
         parent::__construct('AsideSection', $writer->getPath(), $writer->getNamespace());
 
-        $this->addUseStatement('WebFiori\Framework\Ui\WebPage');
-        $this->addUseStatement('WebFiori\\Ui\\HTMLNode');
+        $this->addUseStatement(WebPage::class);
+        $this->addUseStatement(HTMLNode::class);
+
         $this->wf = $writer->getWireframe();
     }
     public function getWireframe() : string {
