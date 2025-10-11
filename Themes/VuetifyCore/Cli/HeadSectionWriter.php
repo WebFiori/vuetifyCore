@@ -2,7 +2,10 @@
 
 namespace Themes\VuetifyCore\Cli;
 
+use Themes\VuetifyCore\VueHeadSectionV2;
+use WebFiori\Framework\Ui\WebPage;
 use WebFiori\Framework\Writers\ClassWriter;
+use WebFiori\Ui\HeadNode;
 
 /**
  * A class which is used to write head section class of the theme.
@@ -12,8 +15,9 @@ use WebFiori\Framework\Writers\ClassWriter;
 class HeadSectionWriter extends ClassWriter {
     public function __construct(VuetifyThemeClassWriter $writer) {
         parent::__construct('HeadSection', $writer->getPath(), $writer->getNamespace());
-        $this->addUseStatement('WebFiori\Framework\Ui\WebPage');
-        $this->addUseStatement('WebFiori\\Ui\\HeadNode');
+        $this->addUseStatement(WebPage::class);
+        $this->addUseStatement(HeadNode::class);
+        $this->addUseStatement(VueHeadSectionV2::class);
     }
     public function writeClassBody() {
 
@@ -27,12 +31,6 @@ class HeadSectionWriter extends ClassWriter {
         ], 1);
         $this->append([
             'parent::__construct();',
-            "\$this->addJs('https://unpkg.com/vue@2.x.x');",
-            "\$this->addCSS('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');",
-            "\$this->addCSS('https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css');",
-            "\$this->addCSS('https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css');",
-            "\$this->addJs('https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js');",
-            "\$this->addJs('https://cdn.jsdelivr.net/gh/usernane/AJAXRequestJs@2.0.3/AJAXRequest.js');",
             '//TODO: Add any extra JS or Css files here in addition to meta tags.',
         ], 2);
         $this->append('}', 1);
@@ -46,7 +44,7 @@ class HeadSectionWriter extends ClassWriter {
     }
 
     public function writeClassDeclaration() {
-        $this->append("class ".$this->getName().' extends HeadNode {');
+        $this->append("class ".$this->getName().' extends VueHeadSectionV2 {');
     }
 
 }

@@ -11,12 +11,15 @@ class VueHeadSectionV2 extends CommonHead {
     /**
      * Creates new instance of the class.
      */
-    public function __construct(WebPage $page) {
+    public function __construct(?WebPage $page = null) {
         parent::__construct($page);
-        $vueVersion = '2.7.16';
-        $vuetifyVersion = '2.7.2';
+        define('VUE_VERSION', '2.7.16');
+        define('VUETIFY_VERSION', '2.7.2');
+
+        $vueVersion = VUE_VERSION;
+        $vuetifyVersion = VUETIFY_VERSION;
         
-        if (WF_VERBOSE) {
+        if (defined('WF_VERBOSE') && WF_VERBOSE) {
             $this->addJs("https://unpkg.com/vue@$vueVersion/dist/vue.js", [
                 'integrity' => "sha256-NrENO0kgWSpOwmwGTEKemj37RokjX9/JHhc2toHHZ4Y=",
                 'crossorigin' => "anonymous",
@@ -31,7 +34,10 @@ class VueHeadSectionV2 extends CommonHead {
                 'version' => $vueVersion
             ]);
         }
-
+        $this->addCSS("https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.4.47/css/materialdesignicons.min.css", [
+            'integrity' => "sha256-A/48q6BeZbFOQDUTnu6JsSvofNC880KsOIZ3Duw6mWI=",
+            'crossorigin' => "anonymous"
+        ]);
         $this->addCSS("https://cdnjs.cloudflare.com/ajax/libs/vuetify/$vuetifyVersion/vuetify.min.css", [
             'integrity' => "sha256-Y2/mvM8cPptVwHOaNUPMi+I636ATzQd9zc4vvqWIv/I=",
             'crossorigin' => "anonymous",
