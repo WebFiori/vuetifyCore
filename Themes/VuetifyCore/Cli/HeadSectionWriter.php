@@ -25,10 +25,10 @@ class HeadSectionWriter extends ClassWriter {
             "/**",
             " * Creates new instance of the class.",
             " */",
-            $this->f('__construct',[
-                'page' => 'WebPage'
-            ])
         ], 1);
+        $this->f('__construct',[
+            'page' => 'WebPage'
+        ]);
         $this->append([
             'parent::__construct();',
             '//TODO: Add any extra JS or Css files here in addition to meta tags.',
