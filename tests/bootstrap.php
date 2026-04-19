@@ -1,5 +1,7 @@
 <?php
 
+use WebFiori\Framework\App;
+
 ini_set('display_startup_errors', 1);
 ini_set('display_errors', 1);
 error_reporting(-1);
@@ -35,10 +37,8 @@ spl_autoload_register(function ($class) {
     }
 });
 
-try {
-    WebFiori\Framework\App::start();
-} catch (\Throwable $ex) {
-    // Framework may throw on missing app classes; that's fine for tests
-}
+// Initialize framework enough for tests
+WebFiori\Framework\App::initiate('App', 'public', ROOT_PATH . 'public');
+App::start();
 
 fprintf(STDOUT, "Running tests...\n");
