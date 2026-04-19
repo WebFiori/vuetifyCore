@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.0](https://github.com/WebFiori/vuetifyCore/compare/v2.0.0...v3.0.0) (2026-04-19)
+
+
+### Miscellaneous Chores
+
+* Merge pull request [#10](https://github.com/WebFiori/vuetifyCore/issues/10) from WebFiori/dev ([9f7d133](https://github.com/WebFiori/vuetifyCore/commit/9f7d133bbf142eb34241a6e266a8b9d349e639a1))
+* Updated Core Version ([e744ca2](https://github.com/WebFiori/vuetifyCore/commit/e744ca285dc59545c3525ef0f20811e2b8c15df9))
+
 ## [2.0.0](https://github.com/WebFiori/vuetifyCore/compare/v1.4.2...v2.0.0) (2025-10-11)
 
 
