@@ -35,10 +35,10 @@ class HeaderSectionWriter extends ClassWriter {
             "/**",
             " * Creates new instance of the class.",
             " */",
-            $this->f('__construct',[
-                'page' => 'WebPage'
-            ])
         ], 1);
+        $this->f('__construct',[
+            'page' => 'WebPage'
+        ]);
         
         if ($wireframe == 'Side Navigation' || $wireframe == 'Base' || $wireframe == 'System Bar' || $wireframe == 'Inbox') {
             $this->append('parent::__construct(\'v-app-bar\', [', 2);

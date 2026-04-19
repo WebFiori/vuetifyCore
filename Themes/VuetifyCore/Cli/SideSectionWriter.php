@@ -33,10 +33,10 @@ class SideSectionWriter extends ClassWriter {
             "/**",
             " * Creates new instance of the class.",
             " */",
-            $this->f('__construct',[
-                'page' => 'WebPage'
-            ])
         ], 1);
+        $this->f('__construct',[
+            'page' => 'WebPage'
+        ]);
         $wireframe = $this->getWireframe();
 
         if ($wireframe == 'Base' 

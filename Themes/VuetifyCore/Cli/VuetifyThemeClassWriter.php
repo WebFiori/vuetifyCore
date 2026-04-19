@@ -60,8 +60,8 @@ class VuetifyThemeClassWriter extends ClassWriter {
             "/**",
             " * Creates new instance of the class.",
             " */",
-            $this->f('__construct')
         ], 1);
+        $this->f('__construct');
 
         $this->append([
             "parent::__construct('Super Theme');",
@@ -93,8 +93,8 @@ class VuetifyThemeClassWriter extends ClassWriter {
             " * @return HTMLNode|null An object of type 'HTMLNode'. If the theme has no aside",
             ' * section, the method might return null.',
             ' */',
-            $this->f('getAsideNode', [], 'HTMLNode')
         ], 1);
+        $this->f('getAsideNode', [], 'HTMLNode');
         $this->append('return new AsideSection($this->getPage());', 2);
         $this->append('}', 1);
         $this->writeAside();
@@ -106,8 +106,8 @@ class VuetifyThemeClassWriter extends ClassWriter {
             " * @return HTMLNode|null An object of type 'HTMLNode'. If the theme has no footer",
             ' * section, the method might return null.',
             ' */',
-            $this->f('getFooterNode', [], 'HTMLNode')
         ], 1);
+        $this->f('getFooterNode', [], 'HTMLNode');
         $this->append('return new FooterSection($this->getPage());', 2);
         $this->append('}', 1);
         $this->writeFooter();
@@ -118,8 +118,8 @@ class VuetifyThemeClassWriter extends ClassWriter {
             ' *',
             " * @return HeadNode",
             ' */',
-            $this->f('getHeadNode', [], 'HeadNode')
         ], 1);
+        $this->f('getHeadNode', [], 'HeadNode');
         $this->append('return new HeadSection($this->getPage());', 2);
         $this->append('}', 1);
         $this->writeHead();
@@ -131,8 +131,8 @@ class VuetifyThemeClassWriter extends ClassWriter {
             " * @return HTMLNode|null @return HTMLNode|null An object of type 'HTMLNode'. If the theme has no header",
             ' * section, the method might return null.',
             ' */',
-            $this->f('getHeaderNode', [], 'HTMLNode')
         ], 1);
+        $this->f('getHeaderNode', [], 'HTMLNode');
         $this->append('return new HeaderSection($this->getPage());', 2);
         $this->append('}', 1);
         $this->writeHeader();
