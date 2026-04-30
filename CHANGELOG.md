@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.1](https://github.com/WebFiori/vuetifyCore/compare/v3.0.0...v3.0.1) (2026-04-30)
+
+
+### Miscellaneous Chores
+
+* Delete composer.lock ([5f31f74](https://github.com/WebFiori/vuetifyCore/commit/5f31f74fe44d49b97e44beb8a1944c2b080b6a1d))
+* Update composer.json ([ac09fcb](https://github.com/WebFiori/vuetifyCore/commit/ac09fcb3035466798ff8d6a005623fda97616541))
+* Update composer.json ([0ea65fc](https://github.com/WebFiori/vuetifyCore/commit/0ea65fc0d99123a02c7e3f5efe1de9af8942e131))
+* Update composer.json ([aa712e9](https://github.com/WebFiori/vuetifyCore/commit/aa712e96c70b7fcc2cbfe8aec744c3bc0245dea7))
+* Update composer.json ([4f53ac4](https://github.com/WebFiori/vuetifyCore/commit/4f53ac4a0953356a15d7ea662e7fc74bb343a84a))
+
 ## [3.0.0](https://github.com/WebFiori/vuetifyCore/compare/v2.0.0...v3.0.0) (2026-04-19)
 
 
