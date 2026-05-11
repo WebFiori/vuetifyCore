@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.2](https://github.com/WebFiori/vuetifyCore/compare/v3.0.1...v3.0.2) (2026-05-11)
+
+
+### Miscellaneous Chores
+
+* Update composer.json ([8031a37](https://github.com/WebFiori/vuetifyCore/commit/8031a37cc962a37a8a32231afc37d2ae3aea5259))
+
 ## [3.0.1](https://github.com/WebFiori/vuetifyCore/compare/v3.0.0...v3.0.1) (2026-04-30)
 
 
