@@ -2,7 +2,7 @@
 
 namespace Themes\VuetifyCore\Cli;
 
-use Themes\VuetifyCore\VueHeadSectionV2;
+use Themes\VuetifyCore\VueHeadSectionV3;
 use WebFiori\Framework\Ui\WebPage;
 use WebFiori\Framework\Writers\ClassWriter;
 use WebFiori\Ui\HeadNode;
@@ -17,7 +17,7 @@ class HeadSectionWriter extends ClassWriter {
         parent::__construct('HeadSection', $writer->getPath(), $writer->getNamespace());
         $this->addUseStatement(WebPage::class);
         $this->addUseStatement(HeadNode::class);
-        $this->addUseStatement(VueHeadSectionV2::class);
+        $this->addUseStatement(VueHeadSectionV3::class);
     }
     public function writeClassBody() {
 
@@ -44,7 +44,7 @@ class HeadSectionWriter extends ClassWriter {
     }
 
     public function writeClassDeclaration() {
-        $this->append("class ".$this->getName().' extends VueHeadSectionV2 {');
+        $this->append("class ".$this->getName().' extends VueHeadSectionV3 {');
     }
 
 }

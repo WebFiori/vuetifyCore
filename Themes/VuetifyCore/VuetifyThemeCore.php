@@ -46,9 +46,18 @@ abstract class VuetifyThemeCore extends Theme {
             $appEl->addChild($page->removeChild('page-footer'));
             $page->getDocument()->getBody()->addChild($vueEl);
             $page->getChildByID('main-content-area')->setNodeName('v-main');
+
+            // Pick the Vue initializer that matches the active head section.
+            // VUE_VERSION is defined by VueHeadSectionV2 (2.x) or VueHeadSectionV3 (3.x).
+            $initFile = 'default.js';
+
+            if (defined('VUE_VERSION')) {
+                $majorVue = (int) explode('.', VUE_VERSION)[0];
+                $initFile = $majorVue >= 3 ? 'default-v3.js' : 'default-v2.js';
+            }
             $page->getDocument()->addChild('script', [
                 'id' => 'vue-init',
-                'src' => 'https://cdn.jsdelivr.net/gh/webfiori/vuetifyCore@1.x.x/themes/vuetifyCore/default.js'
+                'src' => 'https://cdn.jsdelivr.net/gh/webfiori/vuetifyCore@2.x.x/Themes/VuetifyCore/'.$initFile
             ]);
         });
     }
