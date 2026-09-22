@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "webfiori/framework": "~3.0.0-RC@RC"
+        "webfiori/framework": "v3.1.*"
     },
     "require-dev": {
         "phpunit/phpunit": "^10",
