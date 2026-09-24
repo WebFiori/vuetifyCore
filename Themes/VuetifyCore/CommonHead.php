@@ -21,8 +21,8 @@ class CommonHead extends HeadNode {
      */
     public function __construct(?WebPage $page = null) {
         parent::__construct();
-        $this->addJs('https://unpkg.com/ajaxrequest-helper@3.0.0/AJAXRequest.js', [
-            'integrity' => "sha256-HE+XrBPs0QgqO/mGlmgFe5zZSQWB/JfV2dCMcckybm0=",
+        $this->addJs('https://unpkg.com/ajaxrequest-helper@2.1.9/AJAXRequest.js', [
+            'integrity' => "sha256-s9Ds9XxJtxeXIpTz5boTwnVxkYJ6lQ/SlkqNsebuCjQ=",
             'crossorigin' => "anonymous",
             'id' => 'ajaxrequest-helper'
         ]);
