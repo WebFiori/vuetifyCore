@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.1.0](https://github.com/WebFiori/vuetifyCore/compare/v3.0.4...v3.1.0) (2026-09-24)
+
+
+### Features
+
+* **theme:** add Vue 3 initializer and select init script by Vue version ([769d17a](https://github.com/WebFiori/vuetifyCore/commit/769d17a0421211da8f274fa53f37a38e2dda04f7))
+
+
+### Reverts
+
+* **deps:** pin ajaxrequest-helper back to 2.1.9 ([6dc9c18](https://github.com/WebFiori/vuetifyCore/commit/6dc9c189743df833c144a12ee802ad1d6a3f6407))
+
+
+### Miscellaneous Chores
+
+* **deps:** bump Vue, Vuetify and ajaxrequest-helper CDN assets ([a742ee0](https://github.com/WebFiori/vuetifyCore/commit/a742ee009064e0c4ac6fe3ac281c954ceea609a8))
+* normalize line endings to LF ([164fc17](https://github.com/WebFiori/vuetifyCore/commit/164fc17e5ce588dcbe522e5d8c8bc23be46f551a))
+
 ## [3.0.4](https://github.com/WebFiori/vuetifyCore/compare/v3.0.3...v3.0.4) (2026-05-13)
 
 
